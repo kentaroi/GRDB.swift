@@ -185,7 +185,7 @@ open class Record {
     }
     
     /// Sets hasDatabaseChanges to false
-    private func resetDatabaseChanges() throws {
+    public func resetDatabaseChanges() throws {
         referenceRow = try Row(self)
     }
     

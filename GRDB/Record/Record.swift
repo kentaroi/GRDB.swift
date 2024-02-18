@@ -180,7 +180,7 @@ open class Record {
     }
     
     /// Sets hasDatabaseChanges to true
-    private func setHasDatabaseChanges() {
+    public func setHasDatabaseChanges() {
         referenceRow = nil
     }
     
@@ -216,7 +216,7 @@ open class Record {
     
     
     /// Reference row for the *hasDatabaseChanges* property.
-    var referenceRow: Row?
+    public var referenceRow: Row?
     
     // MARK: Persistence Callbacks
     

@@ -68,6 +68,10 @@ public final class DatabaseQueue {
             setupMemoryManagement()
         }
         #endif
+
+        defer {
+            add(transactionObserver: RollbackManager.shared)
+        }
     }
     
     /// Opens an in-memory SQLite database.
@@ -109,6 +113,10 @@ public final class DatabaseQueue {
             path: path,
             configuration: configuration,
             defaultLabel: "GRDB.DatabaseQueue")
+
+        defer {
+            add(transactionObserver: RollbackManager.shared)
+        }
     }
     
     deinit {

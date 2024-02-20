@@ -226,7 +226,9 @@ open class Record {
     /// your implementation.
     ///
     /// - parameter db: A database connection.
-    open func willInsert(_ db: Database) throws { }
+    open func willInsert(_ db: Database) throws {
+        RollbackManager.shared.add(self, operation: .insert)
+    }
     
     /// Called around the record insertion.
     ///
@@ -281,7 +283,9 @@ open class Record {
     /// your implementation.
     ///
     /// - parameter db: A database connection.
-    open func willUpdate(_ db: Database, columns: Set<String>) throws { }
+    open func willUpdate(_ db: Database, columns: Set<String>) throws {
+        RollbackManager.shared.add(self, operation: .update)
+    }
     
     /// Called around the record update.
     ///
@@ -368,7 +372,9 @@ open class Record {
     /// your implementation.
     ///
     /// - parameter db: A database connection.
-    open func willDelete(_ db: Database) throws { }
+    open func willDelete(_ db: Database) throws {
+        RollbackManager.shared.add(self, operation: .delete)
+    }
     
     /// Called around the destruction of the record.
     ///
@@ -426,6 +432,8 @@ open class Record {
             return true
         }
     }
+
+    open func didRollback(operations: RollbackManager.Change.Operations) { }
 }
 
 extension Record: TableRecord { }

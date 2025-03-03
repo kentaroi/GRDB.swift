@@ -68,6 +68,9 @@ open class RollbackManager: TransactionObserver {
     open func databaseDidChange(with event: DatabaseEvent) { }
 
     open func databaseDidCommit(_ db: Database) {
+        for change in changes.values {
+            change.record.didCommit(operations: change.operations)
+        }
         changes.removeAll()
     }
 

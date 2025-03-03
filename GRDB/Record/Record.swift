@@ -433,6 +433,8 @@ open class Record {
         }
     }
 
+    open func didCommit(operations: RollbackManager.Change.Operations) { }
+
     open func didRollback(operations: RollbackManager.Change.Operations) { }
 }
 
